@@ -1,6 +1,5 @@
 # RotatePDF - rotates chosen page or scope of pages of a PDF file by chosen iteration of 90 degrees
 
-# Step1: rotate one chosen page by 90 degrees
 # Step2: rotate chosen page by chosen angle
 # Step3: rotate chosen scope of pages by chosen angle
 
