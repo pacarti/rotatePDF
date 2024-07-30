@@ -17,7 +17,7 @@ pageNum = sys.argv[2]
 
 page = pdfReader.pages[int(pageNum) - 1]
 
-page.rotate(90)
+page.rotate(int(sys.argv[3]))
 
 pdfWriter = PyPDF2.PdfWriter()
 
