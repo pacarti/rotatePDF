@@ -1,23 +1,29 @@
-# RotatePDF - rotates chosen page or scope of pages of a PDF file by chosen iteration of 90 degrees
+# rotatePDF.py - rotates chosen page or scope of pages of a PDF file by chosen iteration of 90 degrees
 
-# Step2: rotate chosen page by chosen angle
 # Step3: rotate chosen scope of pages by chosen angle
 
 import PyPDF2, os, sys
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-pdfFilename = sys.argv[1]
+try:
+    pdfFilename = sys.argv[1]
+    if sys.argv[1] == '--help': 
+        print("Syntax: rotatePDF.py [PDF File] [page to rotate] [iteration of 90 degrees to rotate]")
+        exit()
 
-pdfFile = open(pdfFilename, 'rb')
+    pdfFile = open(pdfFilename, 'rb')
 
-pdfReader = PyPDF2.PdfReader(pdfFile)
+    pdfReader = PyPDF2.PdfReader(pdfFile)
 
-pageNum = sys.argv[2]
+    pageNum = sys.argv[2]
 
-page = pdfReader.pages[int(pageNum) - 1]
+    page = pdfReader.pages[int(pageNum) - 1]
 
-page.rotate(int(sys.argv[3]))
+    page.rotate(int(sys.argv[3]))
+except IndexError:
+    print("ERROR: Incorrect parameters count.")
+    print("Syntax: rotatePDF.py [PDF File] [page to rotate] [iteration of 90 degrees to rotate]")
 
 pdfWriter = PyPDF2.PdfWriter()
 
