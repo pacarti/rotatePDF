@@ -1,10 +1,15 @@
 # rotatePDF.py - rotates chosen page or scope of pages of a PDF file by chosen iteration of 90 degrees
 
 # Step3: rotate chosen scope of pages by chosen angle
+# Step3.1.: Rotate chosen pages given in sqare brackets(eg. '[2, 4, 5]')
+# Step3.2.: Rotate chosen pages given in scope(e.g. 5-11)
 
-import PyPDF2, os, sys
+import PyPDF2, os, sys, re
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+pagesRegex = re.compile()
+
 
 try:
     pdfFilename = sys.argv[1]
@@ -17,6 +22,8 @@ try:
     pdfReader = PyPDF2.PdfReader(pdfFile)
 
     pageNum = sys.argv[2]
+
+    # sys.argv[2].split(',') 
 
     page = pdfReader.pages[int(pageNum) - 1]
 
