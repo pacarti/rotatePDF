@@ -8,7 +8,7 @@ import PyPDF2, os, sys, re
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-pagesRegex = re.compile()
+pagesRegex = re.compile(r'^\[(\d+,?\s?)+\]$')
 
 
 try:
