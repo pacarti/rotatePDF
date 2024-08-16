@@ -4,8 +4,6 @@
 
 # rotatePDF.py - rotates chosen page or scope of pages of a PDF file by chosen iteration of 90 degrees
 
-# Step3.2.: Rotate chosen pages given in scope(e.g. 5-11)
-
 
 def convertScopeIntoAB(scope):
     rmDash = scope.split('-')
