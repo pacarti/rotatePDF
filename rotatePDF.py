@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 
 
-# rotatePDF.py - rotates chosen page or scope of pages of a PDF file by chosen iteration of 90 degrees
-
-
 def convertScopeIntoAB(scope):
     rmDash = scope.split('-')
     # return rmDash
@@ -18,8 +15,7 @@ import PyPDF2, os, sys, re, ast
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-# pagesRegex = re.compile(r'^\[(\d+\,+\s?)+\]$')
-# pagesRegex = re.compile(r'^\[(\d+,?\s?)+\]$')
+
 pagesRegex = re.compile(r'^\[(\d+\s*,{1}\s*)+\d+\]$')
 
 pagesScopeRegex = re.compile(r'^\[(\d+\s?\-?\s?\d+)+\]$')
@@ -45,13 +41,9 @@ try:
             exit()
         elif mo != None:
             pageNumsList = ast.literal_eval(pageNum)
-            # print(pageNumsList)
+            for index, number in enumerate(pageNumsList):
+                pageNumsList[index] = number-1
 
-            '''
-            if moScope == None:
-                        print("For scope, type START page followed by dash and FINISH page in square brackets and commas. E.g.: '[1 - 5]'")
-                        exit()
-            '''
 
         elif moScope != None:
             scope = moScope.group()
@@ -60,7 +52,6 @@ try:
             scopeStart = scopeABList[0]
             scopeEnd = scopeABList[1]
 
-    # sys.argv[2].split(',') 
 
     rotationAngle = int(sys.argv[3])
 
@@ -70,7 +61,6 @@ except IndexError:
 
 pdfWriter = PyPDF2.PdfWriter()
 
-# pdfWriter.add_page(page)
 
 # If not multiple pages were typed, then rotate single page that was selected:
 if 'pageNumsList' not in globals() and 'scopeABList' not in globals():    
@@ -84,14 +74,10 @@ if 'pageNumsList' not in globals() and 'scopeABList' not in globals():
         else:
             pdfWriter.add_page(pdfReader.pages[pageI])
 elif 'scopeABList' not in globals():
-    # pageNum = '' # NULL the pageNum variable to use it in a loop
-    # for pageNum in pageNumsList:
-
-# BUG - adds the page to be rotated twice - once non-rotated and once rotated.
 
     for pageI in range(len(pdfReader.pages)):
         if pageI in pageNumsList:
-            page = pdfReader.pages[int(pageI-1)]
+            page = pdfReader.pages[int(pageI)]
             page.rotate(rotationAngle)
             pdfWriter.add_page(page)
         else:
