@@ -13,7 +13,7 @@
 
   <h3>Single page:</h3>
   <p>Syntax:<br> <code>./rotatePDF [PDF file] [page number to be rotated] [Angle]</code></p>
-  <p>For example: 
+  <p>For example: <br>
   <code>./rotatePDF myFile.pdf 2 90</code><br></p>
   <h3>Multiple given pages:</h3>
   <p>Syntax:<br> <code>./rotatePDF [PDF file] '[page numbers to be rotated separated by comma]' [Angle]</code></p>
