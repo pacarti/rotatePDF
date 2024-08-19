@@ -1,14 +1,17 @@
 <h1>rotatePDF</h1>
 
 <p>Rotates the given page(or pages) of a PDF file with a chosen angle(90, 180, 270).</p> <br><br>
+
+<h2>Single-page PDF file</h2> 
+<p>Syntax: <code>./rotatePDF [PDF file] [rotation angle]</code>
+<p>For example: </p>
+<code>./rotatePDF myFile.pdf 90</code>
+
+<h2>Multiple-page PDF files</h2>
+
 <p>You can rotate the pages in 3 modes:</p>
 <ul>
-  <li><h2>Single-page PDF file</h2> 
-  <p>Syntax: <code>./rotatePDF [PDF file] [rotation angle]</code>
-  <p>For example: </p>
-  <code>./rotatePDF myFile.pdf 90</code>
-  </li>
-  <li><h2>Multiple-page PDF files</h2>
+
   Single page:
   <p>Syntax: <code>./rotatePDF [PDF file] [page number to be rotated] [Angle]</code></p>
   <p>For example: </p>
