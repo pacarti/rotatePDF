@@ -11,7 +11,7 @@
 
 <h2>Multiple-page PDF files</h2>
 
-<p>You can rotate the pages in 3 modes:</p>
+<p>You can rotate the pages in 3 modes:</p><br>
 
   <h3>Single page:</h3>
   <p>Syntax:<br> <code>./rotatePDF [PDF file] [page number to be rotated] [Angle]</code></p>
