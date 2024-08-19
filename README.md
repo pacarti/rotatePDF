@@ -10,18 +10,17 @@
 <h2>Multiple-page PDF files</h2>
 
 <p>You can rotate the pages in 3 modes:</p>
-<ul>
-  <li>Single page:</li>
+
+  <h3>Single page:</h3>
   <p>Syntax: <code>./rotatePDF [PDF file] [page number to be rotated] [Angle]</code></p>
   <p>For example: </p>
-  <code>./rotatePDF myFile.pdf 2 90</code></li><br><br>
-  <li>Multiple given pages:
+  <code>./rotatePDF myFile.pdf 2 90</code><br>
+  <h3>Multiple given pages:</h3>
   <p>Syntax: <code>./rotatePDF [PDF file] '[page numbers to be rotated separated by comma]' [Angle]</code></p>
   <p>For example: </p>
-  <code>./rotatePDF myFile.pdf '[1, 2, 3]' 90</code></li><br>
-  <code>./rotatePDF myFile.pdf '[1, 2, 3]' 90</code></li><br><br>
-  <li>Pages scope to be rotated:
+  <code>./rotatePDF myFile.pdf '[1, 2, 3]' 90</code><br>
+  <h3>Pages scope to be rotated:</h3>
   <p>Syntax: <code>./rotatePDF [PDF file] '[A-B scope of pages separated by dash]' [Angle]</code></p>
   <p>For example: </p>
-  <code>./rotatePDF myFile.pdf '[1-3]' 90</code></li>
-</ul>
+  <code>./rotatePDF myFile.pdf '[1-3]' 90</code>
+
