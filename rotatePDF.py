@@ -24,29 +24,32 @@ pagesScopeRegex = re.compile(r'^\[(\d+\s?\-?\s?\d+)+\]$')
 pdfFilename = sys.argv[1]
 if sys.argv[1] == '--help': 
     print("Syntax: for one-paged PDFs rotatePDF.py [PDF File] [iteration of 90 degrees to rotate]")
-    print("For multiple-paged PDFs: rotatePDF.py [PDF File] [page to rotate] [iteration of 90 degrees to rotate]")
+    print("For multiple-paged PDFs: rotatePDF.py [PDF File] [page to rotate(or scope)] [iteration of 90 degrees to rotate]")
     exit()
 
 pdfFile = open(pdfFilename, 'rb')
 
 pdfReader = PyPDF2.PdfReader(pdfFile)
 
+pdfWriter = PyPDF2.PdfWriter()
+
 if len(pdfReader.pages) == 1:
     try:
         rotationAngle = int(sys.argv[2])
         page = pdfReader.pages[0]
         page.rotate(rotationAngle)
-        pdfWriter = PyPDF2.PdfWriter()
+        # pdfWriter = PyPDF2.PdfWriter()
         pdfWriter.add_page(page)
     except ValueError:
         print("For one-paged PDFs, 2nd argument has to be the rotation angle. The value must be literal and a multiple of 90 degrees!(90, 180, 270)")
         exit()
     except IndexError:
         print("For one-paged PDFs, pass the rotation angle after the file name!")
-        exit()    
+        exit()  
+
 
 else:
-    try:   
+    if len(sys.argv) == 4:   
         pageNum = sys.argv[2]
 
         if pageNum[0] == '[':
@@ -71,15 +74,46 @@ else:
 
 
         rotationAngle = int(sys.argv[3])
+    else:
+        # If no scope for multiple pages is passed then let all the pages be rotated in given angle.
+        rotationAngle = int(sys.argv[2])
+        
+        # pdfWriter = PyPDF2.PdfWriter()
 
-    except IndexError:
-        print("For multiple-paged PDFs, pass the pages to rotate after the file name and rotation angle after! Use \'--help\' argument for more information")
-        exit()    
+        for page in range(len(pdfReader.pages)):
+            pageToRotate = pdfReader.pages[page]
+            pageToRotate.rotate(rotationAngle)
+
+            pdfWriter.add_page(pageToRotate)
+        
+        '''
+        resultPdfFileNameBase = pdfFilename.split('.pdf')[0]
+
+        resultPDFFile = open(resultPdfFileNameBase + '_rotated.pdf', 'wb')
+
+        pdfWriter.write(resultPDFFile)
+
+        resultPDFFile.close()
+
+        pdfFile.close()
+
+        exit()'''
+
+        # pdfWriter.write()
+
+        
+
+'''
+except IndexError:
+    print("For multiple-paged PDFs, pass the pages to rotate after the file name and rotation angle after! Use \'--help\' argument for more information")
+    # Removed as its not necessary anymore
+    exit()
+'''    
 
 
-    pdfWriter = PyPDF2.PdfWriter()
 
 
+if len(sys.argv) == 4:
     # If not multiple pages were typed, then rotate single page that was selected:
     if 'pageNumsList' not in globals() and 'scopeABList' not in globals():    
         page = pdfReader.pages[int(pageNum) - 1]
